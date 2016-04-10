@@ -4,6 +4,7 @@ defmodule Drop do
     
     from *Introducing Elixir*
     """
+    import :math, only: [sqrt: 1]
 
     @doc """
     Calculates the velocity of an object falling on Earth
@@ -12,10 +13,17 @@ defmodule Drop do
     and the function returns a velocity in meters per second.
     """
 
-    @spec fall_velocity(number()) :: number()
+    @spec fall_velocity(:earth, number()) :: number()
 
-    def fall_velocity(distance) do
-        import :math, only: [sqrt: 1]
+    def fall_velocity(:earth, distance) do
         sqrt(2 * 9.8 * distance)
+    end
+
+    def fall_velocity(:moon, distance) do
+        sqrt(2 * 1.6 * distance)
+    end
+
+    def fall_velocity(:mars, distance) do
+        sqrt(2 * 3.71 * distance)
     end
 end
